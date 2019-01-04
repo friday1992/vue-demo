@@ -6,17 +6,19 @@
     <title>HelloVue Demo</title>
 </head>
 <body>
-        <h1>vue实例</h1>
-        <hr>
+    <h1>vue-text&vue-html</h1>
+    <hr>
     <div id="app">
-        {{message}}
+        <span v-text="message"></span>
+        <span v-html="msgHtml"></span>
     </div>
     <script type="text/javascript">
     //第一个vue实例
      var app=new Vue({
             el:'#app',
             data:{
-                message:'hello Vue!'
+               message:'消息',
+               msgHtml:'<h1>hello html</h2>'
             }
         })
     </script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+    <h1>vue-on事件监听</h1>
+    <hr>
+    <div id="app">
+        计数：<span v-text="count"></span>
+        <button v-on:click="add" >加分</button>
+        <button v-on:click="del">减分</button>
+        <button @click="del">减分</button>
+        <input type="text" @keyup.enter="onEnter" v-model="secondCount">
+    </div>
+    <script type="text/javascript">
+    //第一个vue实例
+     var app=new Vue({
+            el:'#app',
+            data:{
+               count:1,
+               secondCount:1
+            },
+            methods:{
+                add:function(){
+                     this.count++
+                } ,
+                del:function(){
+                    this.count--;
+                },
+                onEnter:function(){
+                    this.count=parseInt(this.secondCount)+this.count
+                }
+            }
+        })
+    </script>
+</body>
+</html>
