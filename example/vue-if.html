@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+    <h1>vue-if&vue-show</h1>
+    <hr>
+    <div id="app">
+        <div v-if="isLogin">已登陆（v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。）</div>
+        <div v-else>没登陆</div>
+        <div v-show="isShow">不显示（css设置属性 display: none）</div>
+    </div>
+    <script type="text/javascript">
+    //第一个vue实例
+     var app=new Vue({
+            el:'#app',
+            data:{
+                isLogin:true,
+                isShow:false
+            }
+        })
+    </script>
+</body>
+</html>
