@@ -12,11 +12,25 @@
             <span >{{message}}</span>
             <hr>
             <!-- lazy相当于change事件  -->
-            <input type="text" v-model.lazy="message">
+            lazy:<input type="text" v-model.lazy="message">
              <!-- number将字符串改成数字  -->
-            <input type="text" v-model.number="message">
+             <hr>
+             number:<input type="text" v-model.number="message">
+            <hr>
              <!-- trim 去空格  -->
-            <input type="text" v-model.lazy="message">
+             trim: <input type="text" v-model.lazy="message">
+             <hr>
+             单选：<input type="checkbox" v-model="isTrue">
+                    <label for="isTrue">{{isTrue}}</label>
+            <hr>   
+            多选：    <input type="checkbox" id="JSPang" value="JSPang" v-model="web_Names">
+            <label for="JSPang">JSPang</label><br/>
+            <input type="checkbox" id="Panda" value="Panda" v-model="web_Names">
+            <label for="JSPang">Panda</label><br/>
+            <input type="checkbox" id="PanPan" value="PanPan" v-model="web_Names">
+            <label for="JSPang">PanPan</label>
+            <p>{{web_Names}}</p>    
+
     </div>
     <script type="text/javascript">
     //第一个vue实例
@@ -24,6 +38,8 @@
             el:'#app',
             data:{
              message:"hello vue",
+             web_Names:[],
+             isTrue:true
             },
       
         })
