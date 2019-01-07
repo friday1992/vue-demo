@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+        <h1>vue minmix 在你已经写好了构造器后，需要增加方法或者临时的活动时使用的方法，这时用混入会减少源代码的污染。
+                很多地方都会用到的公用方法，用混入的方法可以减少代码量，实现代码重用。</h1>
+        <hr>
+    <div id="app">
+        {{count}}
+        <button @click="add(2,$event)"> add</button>
+        <p><btn @click.native=add(2)></btn></p>
+    </div>
+    <script type="text/javascript">
+    var btn={
+        template:"<button>按钮组件</button>"
+    }
+    var minmix={
+        updated:function(){
+            console.log("数据放生变化,变化成"+this.count+".");
+
+
+        }
+    }
+    //第一个vue实例
+     var app=new Vue({
+            el:'#app',
+            data:{
+                count:1
+            },
+            components:{
+                "btn":btn
+            },
+            methods:{
+              add:  function(num,event){
+                this.count+=num
+            }
+        },
+        updated:function(){
+            console.log("我是原生")
+
+        },
+             mixins:[minmix]//混入 ,混入的先执行，原生的后执行
+        })
+    </script>
+</body>
+</html>

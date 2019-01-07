@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+        <h1>vue propsData 全局扩展的数据传递</h1>
+        <hr>
+    <div id="app">
+     <header></header>
+    </div>
+    <script type="text/javascript">
+        var header= Vue.extend({
+                template:"<p>{{message}}-{{a}}</p>",
+                data:function(){
+                    return {
+                        message:'hello vue'
+                    }
+                },
+                props:['a']
+            })
+            new header({propsData:{a:1}}).$mount('header')
+    </script>
+</body>
+</html>

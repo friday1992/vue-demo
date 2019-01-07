@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+        <h1>vue实例</h1>
+        <hr>
+    <div id="app">
+        {{count}}
+        <button @click="add(2,$event)"> add</button>
+        <p><btn @click.native=add(2)></btn></p>
+    </div>
+    <button onclick="app.add(3)">外部方法调用</button>
+    <script type="text/javascript">
+    var btn={
+        template:"<button>按钮组件</button>"
+    }
+    //第一个vue实例
+     var app=new Vue({
+            el:'#app',
+            data:{
+                count:1
+            },
+            components:{
+                "btn":btn
+            },
+            methods:{
+              add:  function(num,event){
+                this.count+=num
+                console.log(event)
+            }
+        }
+        })
+    </script>
+</body>
+</html>
