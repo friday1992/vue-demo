@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+    <!-- Vue.extend 返回的是一个“扩展实例构造器”,也就是预设了部分选项的Vue实例构造器。
+        经常服务于Vue.component用来生成组件，
+        可以简单理解为当在模板中遇到该组件名称作为标签的自定义元素时，
+        会自动调用“扩展实例构造器”来生产组件实例，并挂载到自定义元素上。 -->
+        <h1>vue extend扩展实例构造器</h1>
+    
+    <div id="app">
+        {{count}}
+        <ul>
+            <li v-for="item in goods">{{item}}</li>
+        </ul>
+    </div>
+ 
+    <div>
+            <button onclick="add()">add</button>
+    </div>
+    <script type="text/javascript">
+    function add(){
+        //改变外部数据的3种方式
+        // outdata.count++
+        // app.count++
+        // Vue.set(outdata,'count',2)
+        //如果是改变数组的话
+        outdata.goods[1]='111111';//没办法改变，js无法监听数组下标改变，用Vueset 就可以解决这个问题
+        // Vue.set(outdata.goods,1,'111111');
+    }
+    var outdata={
+
+        count:1,
+        goods:['phone','car','apple']
+    }
+            var app=new Vue({
+                el:'#app',
+                data:outdata
+
+
+
+            })
+    </script>
+</body>
+</html>

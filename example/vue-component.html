@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+        <h1>vue-component（十分重要）其实组件就是制作自定义的标签，这些标签在HTML中是没有的</h1>
+        <hr>
+    <div id="app">
+       <luo></luo>
+       <hou  v-bind:here='message' v-bind:go-to='message'></hou>
+       <component v-bind:is="who" ></component>
+       <father></father>
+       <button @click="change">改变</button>
+    </div>
+    <script type="text/javascript">
+        //定义全局组件
+        Vue.component('luo',{
+            template:"<h2 style='color:red'>我是全局组件</h2>"
+        })
+        //父子关系，子要在父亲里面声明
+        var child={
+            template:"<h2 style='color:green'>我是儿子</h2>"
+
+        }
+        var father={
+            template:"<div><h2 style='color:red'>我是父亲</h2><child></child></div>",
+            components:{
+                "child":child
+            }
+        }
+        var componentA={
+            template:"<h2 style='color:red'>我是componentA</h2>"
+        }
+        var componentB={
+            template:"<h2 style='color:green'>我是componentB</h2>"
+        }
+        var componentC={
+            template:"<h2 style='color:pink'>我是componentC</h2>"
+        }
+     var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!',
+                who:'componentA'
+            },
+            //局部component
+            components:{
+                "hou":{
+                    template:"<h2 style='color:red'>我是局部组件,属性是{{here}},来自{{goTo}}</h2>",
+                    props:['here','goTo']//这里式数组 ，Vue不支持-，用小驼峰替代
+ 
+                },
+                "componentA":componentA,
+                "componentB":componentB,
+                "componentC":componentC,
+                "father":father
+            },
+            methods:{
+                change:function(){
+                    if(this.who=="componentA"){
+                        this.who="componentB"
+                    }else if(this.who=="componentB"){
+                        this.who="componentC"
+
+                    }else{
+                        this.who="componentA"
+
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

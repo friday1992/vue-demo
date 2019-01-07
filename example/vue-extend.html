@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+    <!-- Vue.extend 返回的是一个“扩展实例构造器”,也就是预设了部分选项的Vue实例构造器。
+        经常服务于Vue.component用来生成组件，
+        可以简单理解为当在模板中遇到该组件名称作为标签的自定义元素时，
+        会自动调用“扩展实例构造器”来生产组件实例，并挂载到自定义元素上。 -->
+        <h1>vue extend扩展实例构造器</h1>
+        <author></author>
+        <div id="author"></div>
+        <hr>
+    <div id="app">
+          
+    </div>
+    <script type="text/javascript">
+            var authorextend=Vue.extend({
+                template:'<a :href="authorurl">{{authorname}}</a>',
+                data:function(){
+                    return {
+                        authorname:'luo',
+                    authorurl:'https://www.baidu.com/'
+                }
+                }
+            })
+            //挂载
+            new authorextend().$mount('author')
+            new authorextend().$mount('#author')
+    </script>
+</body>
+</html>

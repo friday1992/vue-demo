@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+        <h1>vue direct</h1>
+        <hr>
+    <div id="app">
+            <p v-luo="color" v-text=count></p>
+            <button v-on:click="add">add</button>
+            <button onclick="unbind()">解绑</button>
+    </div>
+    <script type="text/javascript">
+    function unbind(){
+        app.$destroy();
+    }
+    //第一个vue实例
+    // Vue.directive("luo",function(el,binding){
+    //     console.log(el);
+    //     console.log(binding)
+    //     el.style="color:"+binding.value;
+    // })
+    Vue.directive("luo",{
+        bind:function(el,binding){//被绑定
+            el.style="color:"+binding.value;
+     console.log('1 - bind');
+},
+inserted:function(){//绑定到节点
+      console.log('2 - inserted');
+},
+update:function(){//组件更新
+      console.log('3 - update');
+},
+componentUpdated:function(){//组件更新完成
+      console.log('4 - componentUpdated');
+},
+unbind:function(){//解绑
+      console.log('1 - bind');
+}
+    })
+     var app=new Vue({
+            el:'#app',
+            data:{
+              count:0,
+              color:'green'
+            },
+            methods:{
+                add:function(){
+                    this.count++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
