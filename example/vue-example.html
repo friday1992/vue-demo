@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>HelloVue Demo</title>
+</head>
+<body>
+        <h1>vue 实例 方法</h1>
+        <hr>
+    <div id="app">
+        
+    </div>
+    <button onclick="destroy()">销毁实例</button>
+    <button onclick="reload()">刷新实例</button>
+    <button onclick="change()">更改实例</button>
+    <h1>vue 实例 事件</h1>
+    <div id="app2">
+        {{num}}
+        <button @click="add">add</button>
+        <button onclick="reduce()">reduce</button>
+        <button onclick="reduceOnce()">reduceOnce</button>
+        <button onclick="off()">关闭</button>
+    </div>
+  
+    <script type="text/javascript">
+         //1.$mount，挂载我们的扩展
+         var example=   Vue.extend({
+                template:"<p>{{message}}</p>",
+                data:function(){
+                    return {
+                        message:"我是扩展被挂载"
+                    }
+                },
+                mounted:function(){
+                    console.log("mounted 被创建")
+                },
+                destroyed:function(){
+                    console.log("被销毁")
+                },
+                updated:function(){
+                    console.log("被修改")
+
+                }
+            }) 
+         
+         var vim= new example().$mount("#app")//挂载
+        //刷新
+         function reload(){
+            vim.$forceUpdate()
+         }
+        //销毁
+         function destroy(){
+            vim.$destroy()
+         }
+         //更改内容 当Vue构造器里的data值被修改完成后会调用这个方法，也相当于一个钩子函数吧，和构造器里的updated生命周期很像。
+         function change(){
+             vim.message="我是被更改的数据"
+             vim.$nextTick(function(){
+                 console.log("我是message被更改")
+             })
+         }
+
+         //实例的方法
+         var app2=new Vue({
+                el:'#app2',
+                data:{
+                    num:1
+                },
+                methods:{
+                    add:function(){
+                        this.num++
+                    }
+                }
+            })
+         app2.$on('reduce',function(){
+             console.log('外部调用')
+             app2.num--;
+         })   
+         app2.$once('reduceOnce',function(){
+             console.log('只执行一次')
+             app2.num--;
+         })   
+         function reduce(){
+             app2.$emit('reduce')
+         }
+         function reduceOnce(){
+            app2.$emit('reduceOnce')
+
+         }
+         function off(){
+             app2.$off('reduce');
+         }
+    </script>
+</body>
+</html>

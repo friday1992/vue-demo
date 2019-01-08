@@ -23,7 +23,12 @@
             console.log("数据放生变化,变化成"+this.count+".");
 
 
-        }
+        },
+        methods:{
+            add:function(){
+                console.log("我是扩展方法2");
+            }
+         }
     }
     //第一个vue实例
      var app=new Vue({
@@ -34,11 +39,11 @@
             components:{
                 "btn":btn
             },
-            methods:{
-              add:  function(num,event){
-                this.count+=num
-            }
-        },
+        //     methods:{
+        //       add:  function(num,event){
+        //         this.count+=num
+        //     }
+        // },
         updated:function(){
             console.log("我是原生")
 
