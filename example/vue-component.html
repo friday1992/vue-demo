@@ -11,6 +11,7 @@
     <div id="app">
        <luo></luo>
        <hou  v-bind:here='message' v-bind:go-to='message'></hou>
+       <!-- 指定组件 -->
        <component v-bind:is="who" ></component>
        <father></father>
        <button @click="change">改变</button>
